@@ -37,7 +37,7 @@ export default function Channel({
         className="channel"
         style={{
           background: playing ? 'red' : 'blue',
-          opacity: isMuted ? '0.1' : '1',
+          opacity: isMuted ? '0.3' : '0.8',
         }}
       ></div>
       <button

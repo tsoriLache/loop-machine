@@ -1,4 +1,5 @@
 import React from 'react';
+import Cursor from './Cursor';
 
 import DRUMS from './Loop files/DRUMS.mp3';
 import LEAD from './Loop files/LEAD 1.mp3';
@@ -22,7 +23,8 @@ export default function ChannelsSection({
   isLooping: boolean;
 }) {
   return (
-    <div>
+    <div className="channel-section">
+      <Cursor />
       <Channel
         playback={DRUMS}
         playing={isPlaying}
