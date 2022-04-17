@@ -7,14 +7,21 @@ import './style/App.css';
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(9);
+  const [isLooping, setIsLooping] = useState(false);
 
   return (
     <div className="App">
-      <ChannelsSection isPlaying={isPlaying} currentTime={currentTime} />
+      <ChannelsSection
+        isPlaying={isPlaying}
+        isLooping={isLooping}
+        currentTime={currentTime}
+      />
       <ControlSection
         isPlaying={isPlaying}
+        isLooping={isLooping}
         setIsPlaying={setIsPlaying}
         setCurrentTime={setCurrentTime}
+        setIsLooping={setIsLooping}
       />
     </div>
   );

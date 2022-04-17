@@ -4,10 +4,14 @@ export default function ControlSection({
   isPlaying,
   setIsPlaying,
   setCurrentTime,
+  setIsLooping,
+  isLooping,
 }: {
   isPlaying: boolean;
+  isLooping: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsLooping: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const stop = () => {
     setIsPlaying(false);
@@ -24,7 +28,15 @@ export default function ControlSection({
         {isPlaying ? '⏸' : '▶'}
       </button>
       <button onClick={() => stop()}>⏹</button>
-      {/* <button onClick={() => stop()}>loop</button> */}
+      <button
+        style={{ opacity: isLooping ? '1' : '0.1' }}
+        onClick={() => {
+          setCurrentTime(1);
+          setIsLooping((s) => !s);
+        }}
+      >
+        🔁
+      </button>
     </div>
   );
 }

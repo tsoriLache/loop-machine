@@ -5,10 +5,12 @@ export default function Channel({
   playback,
   playing,
   currentTime,
+  isLooping,
 }: {
   playback: string;
   playing: boolean;
   currentTime: number;
+  isLooping: boolean;
 }) {
   const [audio, setAudio] = useState(new Audio(playback));
   const [isMuted, setIsMuted] = useState(false);
@@ -20,6 +22,10 @@ export default function Channel({
   useEffect(() => {
     audio.muted = isMuted;
   }, [audio, isMuted]);
+
+  useEffect(() => {
+    audio.loop = isLooping;
+  }, [audio, isLooping]);
 
   useEffect(() => {
     audio.currentTime = 0;

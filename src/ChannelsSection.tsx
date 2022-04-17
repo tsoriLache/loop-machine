@@ -15,25 +15,68 @@ import Channel from './Channel';
 export default function ChannelsSection({
   isPlaying,
   currentTime,
+  isLooping,
 }: {
   isPlaying: boolean;
   currentTime: number;
+  isLooping: boolean;
 }) {
   return (
     <div>
-      <Channel playback={DRUMS} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={LEAD} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={UUHO} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={HEHE} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={HIGH} playing={isPlaying} currentTime={currentTime} />
+      <Channel
+        playback={DRUMS}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={LEAD}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={UUHO}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={HEHE}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={HIGH}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
       <Channel
         playback={JIBRISH}
         playing={isPlaying}
         currentTime={currentTime}
+        isLooping={isLooping}
       />
-      <Channel playback={SHAKE} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={ALL} playing={isPlaying} currentTime={currentTime} />
-      <Channel playback={B} playing={isPlaying} currentTime={currentTime} />
+      <Channel
+        playback={SHAKE}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={ALL}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
+      <Channel
+        playback={B}
+        playing={isPlaying}
+        currentTime={currentTime}
+        isLooping={isLooping}
+      />
     </div>
   );
 }
