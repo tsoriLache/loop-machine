@@ -1,0 +1,56 @@
+.channel-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+.channel {
+  height: 5vh;
+  width: 60vw;
+  background-color: #555;
+}
+
+/* audio::-webkit-media-controls-panel {
+    
+}
+audio::-webkit-media-controls-mute-button {
+}
+audio::-webkit-media-controls-play-button {
+  display: none;
+}
+audio::-webkit-media-controls-timeline-container {
+  display: none;
+}
+audio::-webkit-media-controls-current-time-display {
+  display: none;
+}
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+audio::-webkit-media-controls-timeline {
+}
+audio::-webkit-media-controls-volume-slider-container {
+  display: none;
+}
+audio::-webkit-media-controls-volume-slider {
+}
+audio::-webkit-media-controls-seek-back-button {
+  display: none;
+}
+audio::-webkit-media-controls-seek-forward-button {
+  display: none;
+}
+audio::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+audio::-webkit-media-controls-rewind-button {
+  display: none;
+}
+audio::-webkit-media-controls-return-to-realtime-button {
+  display: none;
+}
+audio::-webkit-media-controls-toggle-closed-captions-button {
+  display: none;
+} */

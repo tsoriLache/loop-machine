@@ -9,22 +9,28 @@ export default function Channel({
   playing: boolean;
 }) {
   const [audio, setAudio] = useState(new Audio(playback));
-  const [muted, setMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     playing ? audio.play() : audio.pause();
-    audio.muted = muted;
-  }, [playing, muted]);
+    audio.muted = isMuted;
+  }, [playing, isMuted, audio]);
 
   return (
-    <div>
-      <div style={{ color: playing ? 'red' : 'blue' }}>__________________</div>
+    <div className="channel-container">
+      <div
+        className="channel"
+        style={{
+          background: playing ? 'red' : 'blue',
+          opacity: isMuted ? '0.1' : '1',
+        }}
+      ></div>
       <button
         onClick={() => {
-          setMuted((s) => !s);
+          setIsMuted((s) => !s);
         }}
       >
-        {muted ? '🔈' : '🔊'}
+        {isMuted ? '🔈' : '🔊'}
       </button>
     </div>
   );
