@@ -6,11 +6,16 @@ import './style/App.css';
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(9);
 
   return (
     <div className="App">
-      <ChannelsSection isPlaying={isPlaying} />
-      <ControlSection isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+      <ChannelsSection isPlaying={isPlaying} currentTime={currentTime} />
+      <ControlSection
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        setCurrentTime={setCurrentTime}
+      />
     </div>
   );
 }

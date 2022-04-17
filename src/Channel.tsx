@@ -4,17 +4,26 @@ import './style/Channel.css';
 export default function Channel({
   playback,
   playing,
+  currentTime,
 }: {
   playback: string;
   playing: boolean;
+  currentTime: number;
 }) {
   const [audio, setAudio] = useState(new Audio(playback));
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     playing ? audio.play() : audio.pause();
+  }, [playing, audio]);
+
+  useEffect(() => {
     audio.muted = isMuted;
-  }, [playing, isMuted, audio]);
+  }, [audio, isMuted]);
+
+  useEffect(() => {
+    audio.currentTime = 0;
+  }, [audio, currentTime]);
 
   return (
     <div className="channel-container">

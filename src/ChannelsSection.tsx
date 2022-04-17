@@ -12,18 +12,28 @@ import B from './Loop files/B VOC.mp3';
 
 import Channel from './Channel';
 
-export default function ChannelsSection({ isPlaying }: { isPlaying: boolean }) {
+export default function ChannelsSection({
+  isPlaying,
+  currentTime,
+}: {
+  isPlaying: boolean;
+  currentTime: number;
+}) {
   return (
     <div>
-      <Channel playback={DRUMS} playing={isPlaying} />
-      <Channel playback={LEAD} playing={isPlaying} />
-      <Channel playback={UUHO} playing={isPlaying} />
-      <Channel playback={HEHE} playing={isPlaying} />
-      <Channel playback={HIGH} playing={isPlaying} />
-      <Channel playback={JIBRISH} playing={isPlaying} />
-      <Channel playback={SHAKE} playing={isPlaying} />
-      <Channel playback={ALL} playing={isPlaying} />
-      <Channel playback={B} playing={isPlaying} />
+      <Channel playback={DRUMS} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={LEAD} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={UUHO} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={HEHE} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={HIGH} playing={isPlaying} currentTime={currentTime} />
+      <Channel
+        playback={JIBRISH}
+        playing={isPlaying}
+        currentTime={currentTime}
+      />
+      <Channel playback={SHAKE} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={ALL} playing={isPlaying} currentTime={currentTime} />
+      <Channel playback={B} playing={isPlaying} currentTime={currentTime} />
     </div>
   );
 }
