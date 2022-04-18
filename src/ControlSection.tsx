@@ -1,27 +1,26 @@
 import React from 'react';
+import { currentTime, update, reset } from './timeState';
 
 export default function ControlSection({
   isPlaying,
   setIsPlaying,
-  setCurrentTime,
   setIsLooping,
   isLooping,
 }: {
   isPlaying: boolean;
   isLooping: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   setIsLooping: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const stop = () => {
     setIsPlaying(false);
-    setCurrentTime(0);
+    reset();
   };
   return (
     <div>
       <button
         onClick={() => {
-          setCurrentTime(0);
+          reset();
           setIsPlaying((s) => !s);
         }}
       >
@@ -31,7 +30,7 @@ export default function ControlSection({
       <button
         style={{ opacity: isLooping ? '1' : '0.1' }}
         onClick={() => {
-          setCurrentTime(0);
+          reset();
           setIsLooping((s) => !s);
         }}
       >

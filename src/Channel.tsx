@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { currentTime } from './timeState';
 
 export default function Channel({
   i,
   audio,
   playing,
-  currentTime,
   isLooping,
 }: {
   i: number;
   audio: HTMLAudioElement;
   playing: boolean;
-  currentTime: number;
   isLooping: boolean;
 }) {
-  const [isMuted, setIsMuted] = useState(false);
+  const time = currentTime.use();
 
-  // useEffect(() => {
-  //   playing ? audio.play() : audio.pause();
-  // }, [playing, audio]);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     audio.muted = isMuted;
@@ -28,8 +25,8 @@ export default function Channel({
   }, [audio, isLooping]);
 
   useEffect(() => {
-    audio.currentTime = currentTime;
-  }, [audio, currentTime]);
+    audio.currentTime = time;
+  }, [audio, time]);
 
   return (
     <div className="channel-container">

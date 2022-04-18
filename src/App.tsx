@@ -4,28 +4,19 @@ import ControlSection from './ControlSection';
 
 import './style/App.css';
 
-function App() {
+export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
 
   return (
     <div className="App">
-      <ChannelsSection
-        isPlaying={isPlaying}
-        isLooping={isLooping}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
-      />
+      <ChannelsSection isPlaying={isPlaying} isLooping={isLooping} />
       <ControlSection
         isPlaying={isPlaying}
         isLooping={isLooping}
         setIsPlaying={setIsPlaying}
-        setCurrentTime={setCurrentTime}
         setIsLooping={setIsLooping}
       />
     </div>
   );
 }
-
-export default App;

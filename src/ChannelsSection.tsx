@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { currentTime, update } from './timeState';
+
 import './style/Channel.css';
 
 import Cursor from './Cursor';
@@ -21,53 +23,31 @@ let audioElements: HTMLAudioElement[] = audioLoops.map(
 );
 export default function ChannelsSection({
   isPlaying,
-  currentTime,
-  setCurrentTime,
   isLooping,
 }: {
   isPlaying: boolean;
-  currentTime: number;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   isLooping: boolean;
 }) {
-  const [time, setTime] = useState(0);
-  const [channelTime, setChannelTime] = useState(0);
-
-  const onScrub = (time: any) => {
-    setTime(time);
-  };
-
-  const onScrubEnd = (value: number) => {
-    setCurrentTime(value);
-  };
+  const time = currentTime.use();
 
   useEffect(() => {
     audioElements.map((element) =>
       isPlaying ? element.play() : element.pause()
     );
     isPlaying
-      ? setInterval(() => setTime(audioElements[0].currentTime), 100)
+      ? setInterval(() => update(audioElements[0].currentTime), 100)
       : console.log('not playing');
   }, [isPlaying]);
 
-  useEffect(() => {
-    setChannelTime(currentTime);
-  }, [currentTime]);
-
   return (
     <div className="channel-section">
-      <Cursor
-        time={time}
-        onScrub={onScrub}
-        onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
-      />
+      <Cursor />
       {audioElements.map((element, i) => (
         <Channel
           key={element.src}
           i={i}
           audio={element}
           playing={isPlaying}
-          currentTime={channelTime}
           isLooping={isLooping}
         />
       ))}
