@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { GoMute, GoUnmute } from 'react-icons/go';
 
 export default function Channel({
   i,
@@ -44,7 +45,7 @@ export default function Channel({
             setIsMuted((s) => !s);
           }}
         >
-          {isMuted ? '🔈' : '🔊'}
+          {isMuted ? <GoMute size={20} /> : <GoUnmute size={20} />}
         </button>
       </div>
     </div>
