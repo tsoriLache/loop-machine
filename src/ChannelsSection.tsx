@@ -61,11 +61,11 @@ export default function ChannelsSection({
         onScrub={onScrub}
         onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
       />
-      {audioLoops.map((loop, i) => (
+      {audioElements.map((element, i) => (
         <Channel
-          key={i}
+          key={element.src}
           i={i}
-          playback={loop}
+          audio={element}
           playing={isPlaying}
           currentTime={channelTime}
           isLooping={isLooping}
