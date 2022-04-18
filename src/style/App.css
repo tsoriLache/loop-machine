@@ -9,6 +9,40 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+* {
+  font-family: sans-serif;
+}
+
+.text {
+  margin-top: 5vh;
+  width: 70%;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+}
+h1 {
+  position: relative;
+  margin-bottom: 5px;
+}
+h1::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  top: -10px;
+  left: 0;
+  height: 100%;
+  padding: 10px;
+  transform: skewX(-20deg);
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(13, 106, 132, 0.9),
+    rgba(26, 160, 83, 0.8)
+  );
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
 
 .control-section {
   margin-right: 8vw;

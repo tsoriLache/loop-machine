@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChannelsSection from './ChannelsSection';
 import ControlSection from './ControlSection';
+import Header from './Header';
 
 import './style/App.css';
 
@@ -15,6 +16,7 @@ function App() {
   };
   return (
     <div className="App">
+      <Header />
       <ChannelsSection
         isPlaying={isPlaying}
         isLooping={isLooping}
