@@ -19,6 +19,7 @@ export default function Cursor({
         max="17"
         value={time}
         onChange={({ target }) => onScrub(Number(target.value))}
+        onTouchEnd={onScrubEnd}
         onMouseUp={onScrubEnd}
         onKeyUp={onScrubEnd}
         step="0.01"

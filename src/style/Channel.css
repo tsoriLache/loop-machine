@@ -1,6 +1,9 @@
 .channel-section {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .channel-container {
@@ -26,8 +29,8 @@
 }
 
 .slide-container {
-  width: 90%; /* Width of the outside container */
-  height: 1%;
+  width: 60vw; /* Width of the outside container */
+  height: 5%;
 }
 /* The slider itself */
 .slider {
@@ -55,7 +58,7 @@
   height: 60vh; /* Slider handle height */
   background: #fcfdfd; /* Green background */
   cursor: pointer; /* Cursor on hover */
-  margin-top: 40%;
+  margin-top: 55vh;
 }
 
 .slider::-moz-range-thumb {
