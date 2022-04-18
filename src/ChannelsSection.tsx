@@ -16,41 +16,45 @@ import B from './Loop files/B VOC.mp3';
 
 const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
-let audioElements: HTMLAudioElement[] = audioLoops.map(
+const audioElements: HTMLAudioElement[] = audioLoops.map(
   (loop) => new Audio(loop)
 );
+
+interface Props {
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  isLooping: boolean;
+}
+
 export default function ChannelsSection({
   isPlaying,
-  isLooping,
   setIsPlaying,
-}: {
-  isPlaying: boolean;
-  isLooping: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  const [time, setTime] = useState(0);
+  isLooping,
+}: Props) {
+  const [cursorTime, setCursorTime] = useState(0);
   const [channelTime, setChannelTime] = useState(0);
-  const [playingInterval, setPlayingInterval] = useState({
-    interval: setInterval(() => console.log('initial'), 100000000000000),
-  });
+  const [playingInterval, setPlayingInterval] = useState(
+    setInterval(() => {}, 100000000000000)
+  );
+
   const handleClearInterval = () => {
     setIsPlaying(false);
-    clearInterval(playingInterval.interval);
+    clearInterval(playingInterval);
   };
 
   const onScrub = (time: any) => {
     handleClearInterval();
-    setTime(time);
+    setCursorTime(time);
   };
 
   const onScrubEnd = (time: number) => {
     setChannelTime(time);
     if (isPlaying) {
       const interval = setInterval(
-        () => setTime(audioElements[0].currentTime),
+        () => setCursorTime(audioElements[0].currentTime),
         100
       );
-      setPlayingInterval({ interval });
+      setPlayingInterval(interval);
       setIsPlaying(true);
     }
   };
@@ -61,10 +65,10 @@ export default function ChannelsSection({
     );
     if (isPlaying) {
       const interval = setInterval(
-        () => setTime(audioElements[0].currentTime),
+        () => setCursorTime(audioElements[0].currentTime),
         100
       );
-      setPlayingInterval({ interval });
+      setPlayingInterval(interval);
     } else {
       console.log('not playing');
     }
@@ -73,7 +77,7 @@ export default function ChannelsSection({
   return (
     <div className="channel-section">
       <Cursor
-        time={time}
+        time={cursorTime}
         onScrub={onScrub}
         onScrubEnd={onScrubEnd}
         handleClick={handleClearInterval}
@@ -83,7 +87,7 @@ export default function ChannelsSection({
           key={element.src}
           i={i}
           audio={element}
-          playing={isPlaying}
+          isPlaying={isPlaying}
           currentTime={channelTime}
           isLooping={isLooping}
         />

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+interface Props {
+  time: number;
+  onScrub: (a: number) => void;
+  onScrubEnd: (a: any) => void;
+  handleClick: VoidFunction;
+}
 
 export default function Cursor({
   time,
   onScrub,
   onScrubEnd,
   handleClick,
-}: {
-  time: number;
-  onScrub: (a: number) => void;
-  onScrubEnd: (a: any) => void;
-  handleClick: VoidFunction;
-}) {
+}: Props) {
   return (
     <div className="slide-container">
       <label className="time-label">{time.toFixed(2)}</label>

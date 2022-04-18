@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { GoMute, GoUnmute } from 'react-icons/go';
 
+interface Props {
+  i: number;
+  audio: HTMLAudioElement;
+  isPlaying: boolean;
+  currentTime: number;
+  isLooping: boolean;
+}
+
 export default function Channel({
   i,
   audio,
-  playing,
+  isPlaying,
   currentTime,
   isLooping,
-}: {
-  i: number;
-  audio: HTMLAudioElement;
-  playing: boolean;
-  currentTime: number;
-  isLooping: boolean;
-}) {
+}: Props) {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -34,11 +36,10 @@ export default function Channel({
         className="channel"
         style={{
           background: `rgb(${0},${i * 10 + 170},${200 - i * 10},0.7)`,
-          boxShadow: playing ? '5px 5px #050505' : '0px 0px',
+          boxShadow: isPlaying ? '5px 5px #050505' : '0px 0px',
           opacity: isMuted ? '0.3' : '0.8',
         }}
       >
-        {' '}
         <button
           className="mute-button"
           onClick={() => {
