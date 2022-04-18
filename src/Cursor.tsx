@@ -11,7 +11,7 @@ export default function Cursor({
 }) {
   return (
     <div className="slide-container">
-      <label>{time}</label>
+      <label>{time.toFixed(2)}</label>
       <input
         className="slider"
         type="range"

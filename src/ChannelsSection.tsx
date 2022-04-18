@@ -16,6 +16,9 @@ import B from './Loop files/B VOC.mp3';
 
 const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
+let audioElements: HTMLAudioElement[] = audioLoops.map(
+  (loop) => new Audio(loop)
+);
 export default function ChannelsSection({
   isPlaying,
   currentTime,
@@ -37,6 +40,15 @@ export default function ChannelsSection({
   const onScrubEnd = (value: number) => {
     setCurrentTime(value);
   };
+
+  useEffect(() => {
+    audioElements.map((element) =>
+      isPlaying ? element.play() : element.pause()
+    );
+    isPlaying
+      ? setInterval(() => setTime(audioElements[0].currentTime), 100)
+      : console.log('not playing');
+  }, [isPlaying]);
 
   useEffect(() => {
     setChannelTime(currentTime);

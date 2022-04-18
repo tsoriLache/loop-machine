@@ -6,7 +6,7 @@ import './style/App.css';
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(9);
+  const [currentTime, setCurrentTime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
 
   return (

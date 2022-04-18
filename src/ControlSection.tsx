@@ -21,7 +21,7 @@ export default function ControlSection({
     <div>
       <button
         onClick={() => {
-          setCurrentTime(1);
+          setCurrentTime(0);
           setIsPlaying((s) => !s);
         }}
       >
@@ -31,7 +31,7 @@ export default function ControlSection({
       <button
         style={{ opacity: isLooping ? '1' : '0.1' }}
         onClick={() => {
-          setCurrentTime(1);
+          setCurrentTime(0);
           setIsLooping((s) => !s);
         }}
       >

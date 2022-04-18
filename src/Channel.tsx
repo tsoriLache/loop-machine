@@ -2,23 +2,22 @@ import React, { useEffect, useState } from 'react';
 
 export default function Channel({
   i,
-  playback,
+  audio,
   playing,
   currentTime,
   isLooping,
 }: {
   i: number;
-  playback: string;
+  audio: HTMLAudioElement;
   playing: boolean;
   currentTime: number;
   isLooping: boolean;
 }) {
-  const [audio, setAudio] = useState(new Audio(playback));
   const [isMuted, setIsMuted] = useState(false);
 
-  useEffect(() => {
-    playing ? audio.play() : audio.pause();
-  }, [playing, audio]);
+  // useEffect(() => {
+  //   playing ? audio.play() : audio.pause();
+  // }, [playing, audio]);
 
   useEffect(() => {
     audio.muted = isMuted;
