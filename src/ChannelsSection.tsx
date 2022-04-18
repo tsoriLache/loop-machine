@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import './style/Channel.css';
+
 import Cursor from './Cursor';
+import Channel from './Channel';
 
 import DRUMS from './Loop files/DRUMS.mp3';
 import LEAD from './Loop files/LEAD 1.mp3';
@@ -11,7 +14,7 @@ import SHAKE from './Loop files/_tambourine_shake_higher.mp3';
 import ALL from './Loop files/ALL TRACK.mp3';
 import B from './Loop files/B VOC.mp3';
 
-import Channel from './Channel';
+const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
 export default function ChannelsSection({
   isPlaying,
@@ -46,60 +49,16 @@ export default function ChannelsSection({
         onScrub={onScrub}
         onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
       />
-      <Channel
-        playback={DRUMS}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={LEAD}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={UUHO}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={HEHE}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={HIGH}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={JIBRISH}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={SHAKE}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={ALL}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
-      <Channel
-        playback={B}
-        playing={isPlaying}
-        currentTime={channelTime}
-        isLooping={isLooping}
-      />
+      {audioLoops.map((loop, i) => (
+        <Channel
+          key={i}
+          i={i}
+          playback={loop}
+          playing={isPlaying}
+          currentTime={channelTime}
+          isLooping={isLooping}
+        />
+      ))}
     </div>
   );
 }
