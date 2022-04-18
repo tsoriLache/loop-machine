@@ -15,10 +15,6 @@ export default function Channel({
 }) {
   const [isMuted, setIsMuted] = useState(false);
 
-  // useEffect(() => {
-  //   playing ? audio.play() : audio.pause();
-  // }, [playing, audio]);
-
   useEffect(() => {
     audio.muted = isMuted;
   }, [audio, isMuted]);
