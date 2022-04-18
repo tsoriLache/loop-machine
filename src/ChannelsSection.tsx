@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Cursor from './Cursor';
 
 import DRUMS from './Loop files/DRUMS.mp3';
@@ -16,67 +16,88 @@ import Channel from './Channel';
 export default function ChannelsSection({
   isPlaying,
   currentTime,
+  setCurrentTime,
   isLooping,
 }: {
   isPlaying: boolean;
   currentTime: number;
+  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   isLooping: boolean;
 }) {
+  const [time, setTime] = useState(0);
+  const [channelTime, setChannelTime] = useState(0);
+
+  const onScrub = (time: any) => {
+    setTime(time);
+  };
+
+  const onScrubEnd = (value: number) => {
+    setCurrentTime(value);
+  };
+
+  useEffect(() => {
+    setChannelTime(currentTime);
+  }, [currentTime]);
+
   return (
     <div className="channel-section">
-      <Cursor />
+      <Cursor
+        time={time}
+        onScrub={onScrub}
+        onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
+      />
       <Channel
         playback={DRUMS}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={LEAD}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={UUHO}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={HEHE}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={HIGH}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={JIBRISH}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={SHAKE}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={ALL}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
       <Channel
         playback={B}
         playing={isPlaying}
-        currentTime={currentTime}
+        currentTime={channelTime}
         isLooping={isLooping}
       />
     </div>

@@ -15,6 +15,7 @@ function App() {
         isPlaying={isPlaying}
         isLooping={isLooping}
         currentTime={currentTime}
+        setCurrentTime={setCurrentTime}
       />
       <ControlSection
         isPlaying={isPlaying}

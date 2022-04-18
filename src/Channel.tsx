@@ -28,7 +28,7 @@ export default function Channel({
   }, [audio, isLooping]);
 
   useEffect(() => {
-    audio.currentTime = 0;
+    audio.currentTime = currentTime;
   }, [audio, currentTime]);
 
   return (
