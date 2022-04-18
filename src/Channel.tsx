@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { GoMute, GoUnmute } from 'react-icons/go';
 
 export default function Channel({
   i,
-  playback,
+  audio,
   playing,
   currentTime,
   isLooping,
 }: {
   i: number;
-  playback: string;
+  audio: HTMLAudioElement;
   playing: boolean;
   currentTime: number;
   isLooping: boolean;
 }) {
-  const [audio, setAudio] = useState(new Audio(playback));
   const [isMuted, setIsMuted] = useState(false);
-
-  useEffect(() => {
-    playing ? audio.play() : audio.pause();
-  }, [playing, audio]);
 
   useEffect(() => {
     audio.muted = isMuted;
@@ -49,7 +45,7 @@ export default function Channel({
             setIsMuted((s) => !s);
           }}
         >
-          {isMuted ? '🔈' : '🔊'}
+          {isMuted ? <GoMute size={20} /> : <GoUnmute size={20} />}
         </button>
       </div>
     </div>

@@ -9,3 +9,19 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.control-section {
+  margin-right: 8vw;
+  width: 60vw;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.control-button {
+  background: none;
+  border: none;
+  width: 5vw;
+  height: 5vw;
+}

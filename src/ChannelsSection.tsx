@@ -16,44 +16,73 @@ import B from './Loop files/B VOC.mp3';
 
 const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
+let audioElements: HTMLAudioElement[] = audioLoops.map(
+  (loop) => new Audio(loop)
+);
 export default function ChannelsSection({
   isPlaying,
-  currentTime,
-  setCurrentTime,
   isLooping,
+  setIsPlaying,
 }: {
   isPlaying: boolean;
-  currentTime: number;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   isLooping: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [time, setTime] = useState(0);
   const [channelTime, setChannelTime] = useState(0);
+  const [playingInterval, setPlayingInterval] = useState({
+    interval: setInterval(() => console.log('initial'), 100000000000000),
+  });
+  const handleClearInterval = () => {
+    setIsPlaying(false);
+    clearInterval(playingInterval.interval);
+  };
 
   const onScrub = (time: any) => {
+    handleClearInterval();
     setTime(time);
   };
 
-  const onScrubEnd = (value: number) => {
-    setCurrentTime(value);
+  const onScrubEnd = (time: number) => {
+    setChannelTime(time);
+    if (isPlaying) {
+      const interval = setInterval(
+        () => setTime(audioElements[0].currentTime),
+        100
+      );
+      setPlayingInterval({ interval });
+      setIsPlaying(true);
+    }
   };
 
   useEffect(() => {
-    setChannelTime(currentTime);
-  }, [currentTime]);
+    audioElements.map((element) =>
+      isPlaying ? element.play() : element.pause()
+    );
+    if (isPlaying) {
+      const interval = setInterval(
+        () => setTime(audioElements[0].currentTime),
+        100
+      );
+      setPlayingInterval({ interval });
+    } else {
+      console.log('not playing');
+    }
+  }, [isPlaying]);
 
   return (
     <div className="channel-section">
       <Cursor
         time={time}
         onScrub={onScrub}
-        onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
+        onScrubEnd={onScrubEnd}
+        handleClick={handleClearInterval}
       />
-      {audioLoops.map((loop, i) => (
+      {audioElements.map((element, i) => (
         <Channel
-          key={i}
+          key={element.src}
           i={i}
-          playback={loop}
+          audio={element}
           playing={isPlaying}
           currentTime={channelTime}
           isLooping={isLooping}

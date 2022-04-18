@@ -6,16 +6,19 @@ import './style/App.css';
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(9);
+  const [currentTime, setCurrentTime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
 
+  const stop = () => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
   return (
     <div className="App">
       <ChannelsSection
         isPlaying={isPlaying}
         isLooping={isLooping}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
+        setIsPlaying={setIsPlaying}
       />
       <ControlSection
         isPlaying={isPlaying}
@@ -23,6 +26,7 @@ function App() {
         setIsPlaying={setIsPlaying}
         setCurrentTime={setCurrentTime}
         setIsLooping={setIsLooping}
+        stop={stop}
       />
     </div>
   );

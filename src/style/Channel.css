@@ -29,6 +29,9 @@
 }
 
 .slide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 60vw; /* Width of the outside container */
   height: 5%;
 }
@@ -66,4 +69,37 @@
   height: 25px; /* Slider handle height */
   background: #04a7aa; /* Green background */
   cursor: pointer; /* Cursor on hover */
+}
+
+/* ruler */
+
+.ruler {
+  width: 60vw;
+  height: 100%;
+  font-size: 6px;
+}
+.ruler::before,
+.ruler::after {
+  content: '';
+  margin-left: 20vw;
+  position: absolute;
+  height: inherit;
+  background-image: linear-gradient(
+    to right,
+    darkslategray 0.1em,
+    transparent 0.1em
+  );
+  background-repeat: repeat-x;
+}
+.ruler::before {
+  background-size: 2em 5em;
+  left: 0.5em;
+  width: 60vw;
+  height: 5vh;
+}
+.ruler::after {
+  background-size: 0.5em 3em;
+  left: 1em;
+  width: 59.5vw;
+  height: 5vh;
 }
