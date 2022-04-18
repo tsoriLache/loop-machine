@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import ChannelsSection from './ChannelsSection';
 import ControlSection from './ControlSection';
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+
+import { TimeProvider } from './timeContext';
 
 import './style/App.css';
 
@@ -16,7 +11,7 @@ export default function App() {
   const [isLooping, setIsLooping] = useState(false);
 
   return (
-    <RecoilRoot>
+    <TimeProvider>
       <div className="App">
         <ChannelsSection isPlaying={isPlaying} isLooping={isLooping} />
         <ControlSection
@@ -26,6 +21,6 @@ export default function App() {
           setIsLooping={setIsLooping}
         />
       </div>
-    </RecoilRoot>
+    </TimeProvider>
   );
 }

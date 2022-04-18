@@ -14,8 +14,8 @@ import JIBRISH from './Loop files/JIBRISH.mp3';
 import SHAKE from './Loop files/_tambourine_shake_higher.mp3';
 import ALL from './Loop files/ALL TRACK.mp3';
 import B from './Loop files/B VOC.mp3';
-import { useRecoilState } from 'recoil';
-import { timeState } from './timeState';
+
+import useTime from './timeContext';
 
 const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
@@ -29,14 +29,17 @@ export default function ChannelsSection({
   isPlaying: boolean;
   isLooping: boolean;
 }) {
-  const [time, setTime] = useRecoilState(timeState);
+  const { time, updateTime } = useTime() as any;
 
   useEffect(() => {
     audioElements.map((element) =>
       isPlaying ? element.play() : element.pause()
     );
     isPlaying
-      ? setInterval(() => setTime(audioElements[0].currentTime), 100)
+      ? setInterval(() => {
+          updateTime(audioElements[0].currentTime);
+          console.log(time);
+        }, 100)
       : console.log('not playing');
   }, [isPlaying]);
 

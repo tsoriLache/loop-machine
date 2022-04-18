@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { timeState } from './timeState';
+import useTime from './timeContext';
 
 export default function Cursor() {
-  const [time, setTime] = useRecoilState(timeState);
+  const { time, updateTime } = useTime() as any;
+  const [ctime, setCtime] = useState(time);
 
   const onScrub = (time: any) => {
-    setTime(time);
+    setCtime(time);
   };
 
-  const onScrubEnd = (value: number) => {
-    setTime(value);
+  const onScrubEnd = () => {
+    console.log(time);
+    updateTime(ctime);
   };
   return (
     <div className="slide-container">

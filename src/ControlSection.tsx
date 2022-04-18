@@ -1,6 +1,5 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { timeState } from './timeState';
+import useTime from './timeContext';
 
 export default function ControlSection({
   isPlaying,
@@ -13,17 +12,17 @@ export default function ControlSection({
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   setIsLooping: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [time, setTime] = useRecoilState(timeState);
+  const { time, updateTime } = useTime() as any;
 
   const stop = () => {
     setIsPlaying(false);
-    setTime(0);
+    updateTime(0);
   };
   return (
     <div>
       <button
         onClick={() => {
-          setTime(0);
+          updateTime(0);
           setIsPlaying((s) => !s);
         }}
       >
@@ -33,7 +32,7 @@ export default function ControlSection({
       <button
         style={{ opacity: isLooping ? '1' : '0.1' }}
         onClick={() => {
-          setTime(0);
+          updateTime(0);
           setIsLooping((s) => !s);
         }}
       >

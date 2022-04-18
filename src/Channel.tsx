@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { timeState } from './timeState';
+import useTime from './timeContext';
 
 export default function Channel({
   i,
@@ -13,7 +12,7 @@ export default function Channel({
   playing: boolean;
   isLooping: boolean;
 }) {
-  const [time, setTime] = useRecoilState(timeState);
+  const { time } = useTime();
 
   const [isMuted, setIsMuted] = useState(false);
 
@@ -25,9 +24,9 @@ export default function Channel({
     audio.loop = isLooping;
   }, [audio, isLooping]);
 
-  useEffect(() => {
-    audio.currentTime = time;
-  }, [audio, time]);
+  // useEffect(() => {
+  //   audio.currentTime = time;
+  // }, [audio, time]);
 
   return (
     <div className="channel-container">
