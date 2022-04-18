@@ -4,17 +4,25 @@
 }
 
 .channel-container {
+  margin-top: 1vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 1vh;
 }
 
 .channel {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
   height: 5vh;
   width: 60vw;
   background-color: #555;
+}
+
+.mute-button {
+  background: none;
+  border: none;
 }
 
 .slide-container {

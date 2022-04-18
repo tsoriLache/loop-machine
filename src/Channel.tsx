@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './style/Channel.css';
 
 export default function Channel({
+  i,
   playback,
   playing,
   currentTime,
   isLooping,
 }: {
+  i: number;
   playback: string;
   playing: boolean;
   currentTime: number;
@@ -36,17 +37,21 @@ export default function Channel({
       <div
         className="channel"
         style={{
-          background: playing ? 'red' : 'blue',
+          background: `rgb(${i * 30},${70},${100},0.7)`,
+          boxShadow: playing ? '3px 3px' : '0px 0px',
           opacity: isMuted ? '0.3' : '0.8',
         }}
-      ></div>
-      <button
-        onClick={() => {
-          setIsMuted((s) => !s);
-        }}
       >
-        {isMuted ? '🔈' : '🔊'}
-      </button>
+        {' '}
+        <button
+          className="mute-button"
+          onClick={() => {
+            setIsMuted((s) => !s);
+          }}
+        >
+          {isMuted ? '🔈' : '🔊'}
+        </button>
+      </div>
     </div>
   );
 }
