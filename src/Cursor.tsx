@@ -13,7 +13,7 @@ export default function Cursor({
 }) {
   return (
     <div className="slide-container">
-      <label>{time.toFixed(2)}</label>
+      <label className="time-label">{time.toFixed(2)}</label>
       <div className="ruler"></div>
       <input
         className="slider "

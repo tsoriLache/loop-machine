@@ -33,8 +33,8 @@ export default function Channel({
       <div
         className="channel"
         style={{
-          background: `rgb(${i * 30},${70},${100},0.7)`,
-          boxShadow: playing ? '3px 3px' : '0px 0px',
+          background: `rgb(${0},${i * 10 + 170},${200 - i * 10},0.7)`,
+          boxShadow: playing ? '5px 5px #050505' : '0px 0px',
           opacity: isMuted ? '0.3' : '0.8',
         }}
       >
