@@ -9,13 +9,16 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
 
+  const stop = () => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
   return (
     <div className="App">
       <ChannelsSection
         isPlaying={isPlaying}
         isLooping={isLooping}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
+        setIsPlaying={setIsPlaying}
       />
       <ControlSection
         isPlaying={isPlaying}
@@ -23,6 +26,7 @@ function App() {
         setIsPlaying={setIsPlaying}
         setCurrentTime={setCurrentTime}
         setIsLooping={setIsLooping}
+        stop={stop}
       />
     </div>
   );

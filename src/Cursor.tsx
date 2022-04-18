@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 export default function Cursor({
   time,
-}: // onScrub,
-// onScrubEnd,
-{
+  onScrub,
+  onScrubEnd,
+  handleClick,
+}: {
   time: number;
-  // onScrub: (a: number) => void;
-  // onScrubEnd: (a: any) => void;
+  onScrub: (a: number) => void;
+  onScrubEnd: (a: any) => void;
+  handleClick: VoidFunction;
 }) {
   return (
     <div className="slide-container">
@@ -19,10 +21,11 @@ export default function Cursor({
         min="0"
         max="17"
         value={time}
-        // onChange={({ target }) => onScrub(Number(target.value))}
-        // onTouchEnd={onScrubEnd}
-        // onMouseUp={onScrubEnd}
-        // onKeyUp={onScrubEnd}
+        onClick={() => handleClick}
+        onChange={({ target }) => onScrub(Number(target.value))}
+        onTouchEnd={() => onScrubEnd(time)}
+        onMouseUp={() => onScrubEnd(time)}
+        onKeyUp={() => onScrubEnd(time)}
         step="0.01"
       />
     </div>

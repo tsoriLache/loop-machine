@@ -21,45 +21,62 @@ let audioElements: HTMLAudioElement[] = audioLoops.map(
 );
 export default function ChannelsSection({
   isPlaying,
-  currentTime,
-  setCurrentTime,
   isLooping,
+  setIsPlaying,
 }: {
   isPlaying: boolean;
-  currentTime: number;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   isLooping: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [time, setTime] = useState(0);
   const [channelTime, setChannelTime] = useState(0);
+  const [playingInterval, setPlayingInterval] = useState({
+    interval: setInterval(() => console.log('initial'), 100000000000000),
+  });
+  const handleClearInterval = () => {
+    setIsPlaying(false);
+    clearInterval(playingInterval.interval);
+  };
 
   const onScrub = (time: any) => {
+    handleClearInterval();
     setTime(time);
   };
 
-  const onScrubEnd = (value: number) => {
-    setCurrentTime(value);
+  const onScrubEnd = (time: number) => {
+    setChannelTime(time);
+    if (isPlaying) {
+      const interval = setInterval(
+        () => setTime(audioElements[0].currentTime),
+        100
+      );
+      setPlayingInterval({ interval });
+      setIsPlaying(true);
+    }
   };
 
   useEffect(() => {
     audioElements.map((element) =>
       isPlaying ? element.play() : element.pause()
     );
-    isPlaying
-      ? setInterval(() => setTime(audioElements[0].currentTime), 100)
-      : console.log('not playing');
+    if (isPlaying) {
+      const interval = setInterval(
+        () => setTime(audioElements[0].currentTime),
+        100
+      );
+      setPlayingInterval({ interval });
+    } else {
+      console.log('not playing');
+    }
   }, [isPlaying]);
-
-  useEffect(() => {
-    setChannelTime(currentTime);
-  }, [currentTime]);
 
   return (
     <div className="channel-section">
       <Cursor
         time={time}
         onScrub={onScrub}
-        onScrubEnd={({ target }) => onScrubEnd(Number(target.value))}
+        onScrubEnd={onScrubEnd}
+        handleClick={handleClearInterval}
       />
       {audioElements.map((element, i) => (
         <Channel
