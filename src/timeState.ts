@@ -1,12 +1,6 @@
-import { entity } from 'simpler-state';
+import { atom } from 'recoil';
 
-export const currentTime = entity(0);
-
-export const reset = () => {
-  currentTime.set(0);
-};
-
-export const update = (newTime: any) => {
-  currentTime.set(newTime);
-  // --OR-->  counter.set(counter.get() + by)
-};
+export const timeState = atom({
+  key: 'timeState', // unique ID (with respect to other atoms/selectors)
+  default: 0, // default value (aka initial value)
+});

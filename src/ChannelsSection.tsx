@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { currentTime, update } from './timeState';
 
 import './style/Channel.css';
 
@@ -15,6 +14,8 @@ import JIBRISH from './Loop files/JIBRISH.mp3';
 import SHAKE from './Loop files/_tambourine_shake_higher.mp3';
 import ALL from './Loop files/ALL TRACK.mp3';
 import B from './Loop files/B VOC.mp3';
+import { useRecoilState } from 'recoil';
+import { timeState } from './timeState';
 
 const audioLoops = [DRUMS, LEAD, UUHO, HEHE, HIGH, JIBRISH, SHAKE, ALL, B];
 
@@ -28,14 +29,14 @@ export default function ChannelsSection({
   isPlaying: boolean;
   isLooping: boolean;
 }) {
-  const time = currentTime.use();
+  const [time, setTime] = useRecoilState(timeState);
 
   useEffect(() => {
     audioElements.map((element) =>
       isPlaying ? element.play() : element.pause()
     );
     isPlaying
-      ? setInterval(() => update(audioElements[0].currentTime), 100)
+      ? setInterval(() => setTime(audioElements[0].currentTime), 100)
       : console.log('not playing');
   }, [isPlaying]);
 

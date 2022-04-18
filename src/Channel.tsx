@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { currentTime } from './timeState';
+import { useRecoilState } from 'recoil';
+import { timeState } from './timeState';
 
 export default function Channel({
   i,
@@ -12,7 +13,7 @@ export default function Channel({
   playing: boolean;
   isLooping: boolean;
 }) {
-  const time = currentTime.use();
+  const [time, setTime] = useRecoilState(timeState);
 
   const [isMuted, setIsMuted] = useState(false);
 
