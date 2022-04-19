@@ -1,46 +1,91 @@
-# Getting Started with Create React App
+# Loop Machine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Build a Looper - front project 
 
-## Available Scripts
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" height="50px" width="50px"><img src="https://www.obg.eu.com/img/technologies/react.png" height="50px" width="50px">
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### Technologies in use - 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **[React](https://reactjs.org/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### AWS Services - ☁
 
-### `npm test`
+ **S3 - In order to serve the front as static files**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Packages -
 
-### `npm run build`
+ **[react-icons](https://react-icons.github.io/react-icons) - For Nice icons**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## My app -
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Features - 
 
-### `npm run eject`
+- **control buttons : play/pause , stop , loop**
+- **Slide cursor to move the playback to the dropped position**
+- **Choosing what sounds you want with the mute/unmute buttons**
+- **Mobile first design!**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### future 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Automatic play when using th slide cursor**
+- **Recording option**
+- **Option to add tracks option**
+- **Github workflow - deploy to s3 on every marge to main**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+### [Visit my website!](http://www.looper.s3-website-us-east-1.amazonaws.com/) 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Maybe it's blocked so it doesn't cost me any money 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **The Front was served in S3 bucket as a static file.**
+
+
+---
+
+## Screenshots 📸 -
+
+##  Front interfaces:
+
+![image](https://user-images.githubusercontent.com/89573774/163898369-0a1cd293-30ff-4902-b986-9b90bc59089e.png)
+
+
+
+---
+
+## Assignment
+
+1. [x] Create a page with 9 rows, each row is a channel which should represent
+an audio loop. (use unique color for each row)
+2. [x] For each channel add a mute button (toggle on/off)
+3. [x] Add section to the bottom of the page with the following buttons :
+    1. [x] Play button - should start playing all channels simultaneously (which
+isn’t muted)
+    2. [x] Stop button - should stop all playing channels and go back to start.
+    3. [x]Loop button (toggle on/off) - when active, each time the loop ends
+you should immediately go back to start and play again (loop).
+
+*make sure to detect toggle changes while playing
+* don’t use native audio elements for UI (you can use it behind).
+* make sure nothing can break the sync between all channels
+* avoid any delay each time a loop is finished and starts over again.
+
+4. [x] Add cursor on top of all channels (1px width from top to bottom) to show
+your current playing position in real time (while playing).
+
+Bonus :
+Add drag and drop abilities to the cursor ! (moving the playback to the
+dropped position)
+
+General guidelines:
+- All the samples have the same length and BPM.
+- Use any framework/library you’d like.
+- Add clear comments to the code where needed.
+- Deploy the project and supply the url.
+Good luck!
