@@ -64,10 +64,14 @@ export default function ChannelsSection({
       isPlaying ? element.play() : element.pause()
     );
     if (isPlaying) {
-      const interval = setInterval(
-        () => setCursorTime(audioElements[0].currentTime),
-        100
-      );
+      const interval = setInterval(() => {
+        setCursorTime(audioElements[0].currentTime);
+        if (audioElements[0].currentTime.toFixed(1) === '16.9') {
+          audioElements.map((e) => (e.currentTime = 0));
+          setChannelTime(0);
+          setCursorTime(0);
+        }
+      }, 100);
       setPlayingInterval(interval);
     } else {
       console.log('not playing');
