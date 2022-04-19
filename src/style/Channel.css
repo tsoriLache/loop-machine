@@ -5,6 +5,10 @@
   flex-direction: column;
   align-items: center;
 }
+.time-label {
+  font-weight: 600;
+  font-size: larger;
+}
 
 .channel-container {
   margin-top: 1vh;
@@ -81,7 +85,7 @@
 .ruler::before,
 .ruler::after {
   content: '';
-  margin-left: 20vw;
+  margin-left: 19.5vw;
   position: absolute;
   height: inherit;
   background-image: linear-gradient(
@@ -94,12 +98,12 @@
 .ruler::before {
   background-size: 2em 5em;
   left: 0.5em;
-  width: 60vw;
+  width: 59vw;
   height: 5vh;
 }
 .ruler::after {
   background-size: 0.5em 3em;
   left: 1em;
-  width: 59.5vw;
+  width: 59vw;
   height: 5vh;
 }

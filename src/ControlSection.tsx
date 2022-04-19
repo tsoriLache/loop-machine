@@ -6,29 +6,29 @@ import {
   BsArrowCounterclockwise,
 } from 'react-icons/bs';
 
+interface Props {
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  isLooping: boolean;
+  setIsLooping: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export default function ControlSection({
   isPlaying,
   setIsPlaying,
-  setCurrentTime,
-  setIsLooping,
   isLooping,
-  stop,
-}: {
-  isPlaying: boolean;
-  isLooping: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-  setIsLooping: React.Dispatch<React.SetStateAction<boolean>>;
-  stop: VoidFunction;
-}) {
+  setIsLooping,
+}: Props) {
+  const stop = () => {
+    console.log('stop');
+    setIsPlaying(false);
+  };
+
   return (
     <div className="control-section">
       <button
         className="control-button"
-        onClick={() => {
-          setCurrentTime(0);
-          setIsPlaying((s) => !s);
-        }}
+        onClick={() => setIsPlaying((s) => !s)}
       >
         {isPlaying ? (
           <BsPauseCircleFill size={50} />
@@ -42,10 +42,7 @@ export default function ControlSection({
       <button
         className="control-button"
         style={{ opacity: isLooping ? '1' : '0.1' }}
-        onClick={() => {
-          setCurrentTime(0);
-          setIsLooping((s) => !s);
-        }}
+        onClick={() => setIsLooping((s) => !s)}
       >
         <BsArrowCounterclockwise size={50} />
       </button>
